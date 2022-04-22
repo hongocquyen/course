@@ -1,0 +1,14 @@
+h2 {
+    color: red;
+}
+
+.navbar-brand {
+    transition: ease-in-out 0.5s;
+    margin-right: 1.5rem;
+
+}
+.navbar-brand:hover{
+    opacity: 0.9;
+    transform: translateX(0.675rem);
+
+}
