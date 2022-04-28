@@ -2,8 +2,15 @@ const Course = require("../models/Course");
 const { mongooseToObject } = require("../../util/mongoose");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 
-
 class CourseController {
+  // [GET] /courses/create
+  createCourse(req, res, next) {
+    res.render("courses/create");
+  }
+  // [POST] /courses/store
+  storeCourse(req, res, next) {
+    res.json(req.data);
+  }
   // [GET] /courses/:slug
   showSlug(req, res, next) {
     // res.render("slug");"
