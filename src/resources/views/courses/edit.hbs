@@ -1,0 +1,33 @@
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-7 mt-4">
+            <div class="card card-course-item card bg-dark text-white">
+                <img src="{{course.image}}" class="card-img-top" alt="...">
+                <div class="card-img-overlay">
+                    <h5 class="card-title text-bold">{{course.name}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 mt-4">
+            <h3>Edit course: {{course.name}}</h3>
+
+            <form method="POST" action="/courses/{{course._id}}?_method=PUT">
+                <div class="mb-3">
+                    <label for="name">Course name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{course.name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" id="description"
+                        name="description">{{course.description}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="image">Image</label>
+                    <input type="text" class="form-control" id="image" name="image" value="{{course.image}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
