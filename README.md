@@ -1,12 +1,15 @@
 # Course
 A very s1mple course. 
-- CRUD -
+- CRUD
 
 # Installation
 
 ## Prerequisites
 On learning NodeJS & ExpressJs with mongoDB - mongoose.
-
+- NodeJS, ExpressJS.
+- MongoDB (mongoose).
+- Template engine: handlebars.
+- 
 
 ###`npm start`
 
