@@ -19,9 +19,9 @@
   "author": "ngocquyen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hongocquyen/blog/issues"
+    "url": "https://github.com/hongocquyen/course/issues"
   },
-  "homepage": "https://github.com/hongocquyen/blog#readme",
+  "homepage": "https://github.com/hongocquyen/course#readme",
   "dependencies": {
     "express": "^4.17.3",
     "express-handlebars": "^6.0.5",
