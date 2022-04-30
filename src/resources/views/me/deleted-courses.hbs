@@ -1,5 +1,5 @@
 <div class="mt-4">
-    <h3>My Courses</h3>
+    <h3>Recycle Bin</h3>
     <table class="table mt-4 table-hover">
         <thead>
             <tr>
@@ -20,7 +20,13 @@
                 <td>{{this.description}}</td>
                 <td>{{this.updatedAt}}</td>
                 <td>
-                    <a href="/courses/{{this._id}}/edit"><i class="fa-solid fa-pencil"></i></a>
+                    {{!-- Restore icon --}}
+                    {{!-- data-bs-toggle="modal" data-bs-target="#exampleModal" --}}
+                    <a href="#" class="btn-restore-course" data-id="{{this._id}}">
+                        <lord-icon src="https://cdn.lordicon.com/sihdhmit.json" trigger="hover" colors="primary:#121331"
+                            state="hover" style="width:20px;height:20px">
+                        </lord-icon>
+                    </a>
                 </td>
                 <td>
                     {{!-- Trigger modal --}}
@@ -35,7 +41,7 @@
         {{else}}
         <tr>
             <td colspan="5" class="text-center">
-                You haven't created any course. <a href="/courses/create">Create course</a>
+                Recycle Bin is empty.
             </td>
         </tr>
         {{/each}}
@@ -43,9 +49,11 @@
     </table>
 </div>
 
-
-{{!-- Hidden form submit --}}
+{{!-- Hidden form submit for restore --}}
+<form name="restore-course-form" method="POST"></form>
+{{!-- Hidden form submit for delete --}}
 <form name="delete-course-form" method="POST"></form>
+
 {{!-- Confirm delete --}}
 
 <!-- Modal -->
@@ -57,7 +65,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Do you really want to delete this item? </br>
+                Do you really want to permanently delete this item? </br>
+                This process cannot be undone.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -71,8 +80,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var courseId;
-        var btnDeleteCourse = document.getElementById("btn-delete-course");
+        //Get forms
         var formDeleteCourse = document.forms['delete-course-form'];
+        var formRestoreCourse = document.forms['restore-course-form'];
+
+        var btnDeleteCourse = document.getElementById("btn-delete-course");
+        var btnRestore = $('.btn-restore-course');
 
         var exampleModal = document.getElementById('exampleModal')
         exampleModal.addEventListener('show.bs.modal', function (event) {
@@ -80,11 +93,20 @@
 
             courseId = button.getAttribute('data-id');
         })
-
+        //Delete course
         btnDeleteCourse.onclick = function () {
-            formDeleteCourse.action = "/courses/" + courseId + "?_method=DELETE";
+            formDeleteCourse.action = "/courses/" + courseId + "/permanently?_method=DELETE";
             formDeleteCourse.submit();
         }
+
+        btnRestore.click(function (e) {
+            e.preventDefault();
+            courseId = $(this).data('id');
+            formDeleteCourse.action = "/courses/" + courseId + "/restore?_method=PATCH";
+            formDeleteCourse.submit();
+        })
+
+
     })
 
 </script>
