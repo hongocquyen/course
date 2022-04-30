@@ -8,6 +8,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Recently update</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         {{#each courses}}
@@ -20,8 +21,11 @@
                 <td>{{this.updatedAt}}</td>
                 <td>
                     <a href="/courses/{{this._id}}/edit"><i class="fa-solid fa-pencil"></i></a>
-                     | 
-                    <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+                <td>
+                    {{!-- Trigger modal --}}
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{this._id}}"><i
+                            class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
         </tbody>
@@ -29,3 +33,50 @@
 
     </table>
 </div>
+
+
+{{!-- Hidden form submit --}}
+<form name="delete-course-form" method="POST"></form>
+{{!-- Confirm delete --}}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Do you really want to delete this item? </br>
+                This process cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="btn-delete-course" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var courseId;
+        var formDeleteCourse = document.forms['delete-course-form'];
+        var btnDeleteCourse = document.getElementById("btn-delete-course");
+
+        var exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+
+            courseId = button.getAttribute('data-id');
+        })
+
+        btnDeleteCourse.onclick = function () {
+            formDeleteCourse.action = "/courses/" + courseId + "?_method=DELETE";
+            formDeleteCourse.submit();
+        }
+    })
+
+</script>

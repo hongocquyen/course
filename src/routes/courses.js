@@ -8,6 +8,7 @@ router.post("/store", courseController.storeCourse);
 router.get("/:slug", courseController.showSlug);
 router.get("/:id/edit", courseController.editCourse);
 router.put("/:id", courseController.updateCourse);
+router.delete("/:id", courseController.deleteCourse);
 router.get("/", courseController.index);
 
 module.exports = router;
