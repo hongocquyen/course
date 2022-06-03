@@ -8,7 +8,7 @@ const route = require("./routes/index");
 const db = require("./config/db/index");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //Connect to DB
 db.connect();
