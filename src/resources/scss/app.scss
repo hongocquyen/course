@@ -1,4 +1,8 @@
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .navbar-brand {
     transition: ease-in-out 0.5s;
     margin-right: 1.5rem;
@@ -20,8 +24,8 @@ a {
 
 .home-container {
     height: 100vh;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
