@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 db.connect();
 
 //HTTP Logger
-app.use(morgan("tiny"));
+// app.use(morgan("tiny"));
 
 //Override method
 app.use(methodOverride("_method"));
